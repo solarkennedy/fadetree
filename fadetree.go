@@ -1,13 +1,9 @@
 package main
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"math/rand"
-	"net/http"
 	"os"
 	"strconv"
 	"strings"
@@ -35,8 +31,6 @@ func random(min, max int) uint8 {
 func shouldIBeOn() bool {
 	if getEnvOverride() != "" {
 		return true
-	} else if isKodiPlayingVideo() {
-		return false
 	} else {
 		now := Now()
 		hour := now.Hour()
@@ -83,57 +77,6 @@ func turnOff(oc *opc.Client, leds_len int) {
 		log.Println("couldn't send color", err)
 	}
 
-}
-
-func isKodiPlayingVideo() bool {
-	players := getKodiGetActivePlayers()
-	if len(players) >= 1 {
-		player0 := players[0].(map[string]interface{})
-		return player0["type"] == "video"
-	} else {
-		return false
-	}
-}
-
-func getKodiGetActivePlayers() []interface{} {
-	// curl -X POST -H "content-type:application/json" 'http://10.0.2.10:8080/jsonrpc' -d '{"jsonrpc": "2.0", "method": "Player.GetActivePlayers", "id": 1}'
-	type Payload struct {
-		Jsonrpc string `json:"jsonrpc"`
-		Method  string `json:"method"`
-		ID      int    `json:"id"`
-	}
-	data := Payload{
-		Jsonrpc: "2.0",
-		Method:  "Player.GetActivePlayers",
-		ID:      1,
-	}
-	payloadBytes, err := json.Marshal(data)
-	if err != nil {
-		fmt.Println(err)
-	}
-	body := bytes.NewReader(payloadBytes)
-
-	req, err := http.NewRequest("POST", "http://10.0.2.10:8080/jsonrpc", body)
-	if err != nil {
-		fmt.Println("Error talking to kodi: ", err)
-		return nil
-	}
-	req.Header.Set("Content-Type", "application/json")
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		fmt.Println("Error talking to kodi: ", err)
-		return nil
-	}
-	var result map[string]interface{}
-	body_bytes, _ := ioutil.ReadAll(resp.Body)
-	err = json.Unmarshal(body_bytes, &result)
-	if err != nil {
-		fmt.Println("Non fatal error parsing json from Kodi:", err)
-	}
-	players := result["result"].([]interface{})
-	defer resp.Body.Close()
-	return players
 }
 
 func getOCClient() *opc.Client {
