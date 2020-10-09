@@ -8,6 +8,8 @@ github.com/kelvins/sunrisesunset v0.0.0-20170601204625-14f1915ad4b4 h1:8GEzGYjqX
 github.com/kelvins/sunrisesunset v0.0.0-20170601204625-14f1915ad4b4/go.mod h1:3oZ7G+fb8Z8KF+KPHxeDO3GWpEjgvk/f+d/yaxmDRT4=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
+github.com/solarkennedy/fadecandycal v0.0.0-20201009043105-521ab6bd7cb2 h1:w6bt0NugIRhaBzX352t5vWPPsNVFF6F1mNXTcRGvLsM=
+github.com/solarkennedy/fadecandycal v0.0.0-20201009043105-521ab6bd7cb2/go.mod h1:o0YyaMGJCe2V/DK3/zzMOXQ2FBVdDkUg+9906w33SLs=
 github.com/stretchr/objx v0.1.0 h1:4G4v2dO3VZwixGIRoQ5Lfboy6nUhCyYzaqnIAPPhYs4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.3.0 h1:TivCn/peBQ7UY8ooIcPgZFpTNSz0Q2U6UrFlUfqbe0Q=

@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/kellydunn/go-opc"
-	"github.com/solarkennedy/fadecandycal/colors"
+	"github.com/solarkennedy/fadetree/colors"
 )
 
 func Now() time.Time {
@@ -80,7 +80,7 @@ func turnOff(oc *opc.Client, leds_len int) {
 }
 
 func getOCClient() *opc.Client {
-	server := "fadecandycal:7890"
+	server := "fadetree:7890"
 	oc := opc.NewClient()
 	err := oc.Connect("tcp", server)
 	if err != nil {
