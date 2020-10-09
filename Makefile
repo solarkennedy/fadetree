@@ -1,5 +1,7 @@
 go:
+	packr
 	go build .
+	packer clean
 	bash -c 'FADECANDYCAL_DATE=`date  "+%B %d"` ./fadetree'
 
 stop:

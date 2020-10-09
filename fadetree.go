@@ -111,6 +111,7 @@ func getToday() time.Time {
 func main() {
 	leds_len := 64
 	oc := getOCClient()
+	go setupWebserver()
 
 	for {
 		today := getToday()
