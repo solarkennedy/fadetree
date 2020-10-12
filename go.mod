@@ -7,6 +7,7 @@ require (
 	github.com/gobuffalo/packr v1.30.1
 	github.com/gobuffalo/packr/v2 v2.8.0 // indirect
 	github.com/gookit/color v1.2.2
+	github.com/gorilla/websocket v1.4.0
 	github.com/karrick/godirwalk v1.16.1 // indirect
 	github.com/kellydunn/go-opc v0.1.0
 	github.com/kelvins/sunrisesunset v0.0.0-20170601204625-14f1915ad4b4

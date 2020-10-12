@@ -139,7 +139,8 @@ func getSunriseSunset(now time.Time) (time.Time, time.Time) {
 func main() {
 	leds_len := 64
 	oc := getOCClient()
-	go setupWebserver()
+	getSunriseSunset(time.Now())
+	go runWebserver()
 
 	for {
 		today := getToday()
