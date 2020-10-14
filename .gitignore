@@ -2,4 +2,3 @@ fadetree
 fadetree.mips
 *.swp
 .vscode
-*-packr.go

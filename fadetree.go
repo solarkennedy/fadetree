@@ -142,6 +142,8 @@ func main() {
 	getSunriseSunset(time.Now())
 	go runWebserver()
 
+	go pollForMotion()
+
 	for {
 		today := getToday()
 		color_palette := colors.GetDaysColors(today)
