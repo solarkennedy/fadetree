@@ -27,16 +27,16 @@ func guessSerialPort() string {
 	return ""
 }
 
-func pollForMotion() {
+func (f FadeTree) pollForMotion() {
 	serialPort := guessSerialPort()
 	if serialPort != "" {
-		setupGobotAndRun(serialPort)
+		f.setupGobotAndRun(serialPort)
 	} else {
 		log.Print("No serial port detected. Skipping fermata interface")
 	}
 }
 
-func setupGobotAndRun(serialPort string) {
+func (f FadeTree) setupGobotAndRun(serialPort string) {
 	firmataAdaptor := firmata.NewAdaptor(serialPort)
 	sensor := gpio.NewPIRMotionDriver(firmataAdaptor, "2")
 	led := gpio.NewLedDriver(firmataAdaptor, "13")
@@ -44,10 +44,12 @@ func setupGobotAndRun(serialPort string) {
 	work := func() {
 		_ = sensor.On(gpio.MotionDetected, func(data interface{}) {
 			fmt.Println(gpio.MotionDetected)
+			f.MotionDetected = true
 			_ = led.On()
 		})
 		_ = sensor.On(gpio.MotionStopped, func(data interface{}) {
 			fmt.Println(gpio.MotionStopped)
+			f.MotionDetected = false
 			_ = led.Off()
 		})
 	}
