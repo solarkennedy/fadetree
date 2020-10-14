@@ -9,43 +9,68 @@ import (
 	"github.com/solarkennedy/fadetree/colors"
 )
 
-func displayPattern(oc *opc.Client, leds_len int, color_palette []colors.Color) {
-	m := opc.NewMessage(0)
-	led_grouping := 1
-	if len(color_palette) == 0 {
-		for i := 0; i < leds_len; i++ {
-			m.SetLength(uint16(leds_len * 3))
-			m.SetPixelColor(i, random(2, 255), random(2, 255), random(2, 255))
-		}
-	} else {
-		for i := 0; i < leds_len; i += led_grouping {
-			c := color_palette[rand.Intn(len(color_palette))]
-			for j := i; j < (i + led_grouping); j++ {
-				m.SetLength(uint16(leds_len * 3))
-				m.SetPixelColor(j, c.R, c.G, c.B)
-				colors.PrintColorBlock(c)
-			}
+func setRandomColors(jars []Jar) {
+	for _, j := range jars {
+		for _, led := range j.Leds {
+			led.R = random(2, 255)
+			led.G = random(2, 255)
+			led.B = random(2, 255)
 		}
 	}
-	err := oc.Send(m)
-	fmt.Println()
-	if err != nil {
-		log.Println("couldn't send color", err)
-	}
-
 }
 
-func turnOff(oc *opc.Client, leds_len int) {
-	m := opc.NewMessage(0)
-	for i := 0; i < leds_len; i++ {
-		m.SetLength(uint16(leds_len * 3))
-		m.SetPixelColor(i, 0, 0, 0)
+func setColorsFromPalette(jars []Jar, color_palette []colors.Color) {
+	for _, j := range jars {
+		for _, led := range j.Leds {
+			c := color_palette[rand.Intn(len(color_palette))]
+			led.R = c.R
+			led.G = c.G
+			led.B = c.B
+		}
 	}
+}
+
+func displayPattern(oc *opc.Client, jars []Jar, color_palette []colors.Color) {
+	if len(color_palette) == 0 {
+		setRandomColors(jars)
+	} else {
+		setColorsFromPalette(jars, color_palette)
+	}
+	Sync(oc, jars)
+}
+
+func (j Jar) TurnOff(oc *opc.Client) {
+	for _, led := range j.Leds {
+		// TODO set to zero
+		led.B = 0
+		led.G = 0
+		led.R = 0
+	}
+}
+
+func turnOffAllJars(oc *opc.Client, jars []Jar) {
+	for _, j := range jars {
+		j.TurnOff(oc)
+	}
+	Sync(oc, jars)
+}
+
+func Sync(oc *opc.Client, jars []Jar) {
+	m := opc.NewMessage(0)
+	counter := 0
+	for jarCounter, j := range jars {
+		for ledCounter, led := range j.Leds {
+			counter = jarCounter * ledCounter
+			m.SetPixelColor(counter, led.R, led.G, led.B)
+			colors.PrintColorBlock(led)
+		}
+	}
+	fmt.Println()
+	m.SetLength(uint16(counter * 3))
 	err := oc.Send(m)
 	if err != nil {
-		log.Println("couldn't send color", err)
+		log.Println("couldn't send opc message", err)
 	}
-
 }
 
 func getOCClient() *opc.Client {

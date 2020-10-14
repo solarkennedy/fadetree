@@ -92,9 +92,9 @@ func (f FadeTree) runWatcher() {
 		today := getToday()
 		color_palette := colors.GetDaysColors(today)
 		if shouldIBeOn() {
-			displayPattern(f.OpcClient, f.NumLeds, color_palette)
+			displayPattern(f.OpcClient, f.Jars, color_palette)
 		} else {
-			turnOff(f.OpcClient, f.NumLeds)
+			turnOffAllJars(f.OpcClient, f.Jars)
 		}
 		time.Sleep(time.Duration(1) * time.Second)
 	}
