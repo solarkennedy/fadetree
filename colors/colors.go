@@ -27,8 +27,13 @@ func PrintColorBlock(c Color) {
 }
 
 func GetDaysColors(day time.Time) []Color {
+
 	var colors []Color
 	occasion := ""
+
+	if day.IsZero() {
+		return colors
+	}
 
 	if TodayIs("January 1", day) {
 		occasion = "New Years Day"

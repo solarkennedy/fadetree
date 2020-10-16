@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"strconv"
@@ -22,7 +23,14 @@ func getEnvOverride() string {
 	return os.Getenv("FADECANDYCAL_DATE")
 }
 
+func inDebugMode() bool {
+	return os.Getenv("VSCODE_PID") != ""
+}
+
 func random(min, max int) uint8 {
+	if max-min <= 0 {
+		return 0
+	}
 	xr := rand.Intn(max-min) + min
 	return uint8(xr)
 }
@@ -30,10 +38,12 @@ func random(min, max int) uint8 {
 func shouldIBeOn() bool {
 	if getEnvOverride() != "" {
 		return true
+	} else if inDebugMode() {
+		return true
 	} else {
 		now := Now()
 		hour := now.Hour()
-		//		rise, set := getSunriseSunset()
+		// TODO: Use sunrise,set
 		//return (now.After(set) && hour <= 21) || (now.After(rise) && hour <= 7)
 		return (hour >= 18 && hour <= 21) || (hour > 6 && hour <= 7)
 	}
@@ -85,17 +95,47 @@ func getSunriseSunset(now time.Time) (time.Time, time.Time) {
 	return sunrise_today, sunset_today
 }
 
-func (f FadeTree) runWatcher() {
-	getSunriseSunset(time.Now())
+func (f *FadeTree) setDailySettings() {
+	f.Sunrise, f.Sunset = getSunriseSunset(time.Now())
+	f.Today = getToday()
+	f.ColorPalette = colors.GetDaysColors(f.Today)
+}
+
+func (f *FadeTree) startDayTicker() {
+	f.setDailySettings()
+	ticker := time.NewTicker(time.Hour)
+	for {
+		t := <-ticker.C
+		log.Printf("Got a DayTicker wakeup at %s", t)
+		f.setDailySettings()
+	}
+}
+
+func (f *FadeTree) setBrightness() {
+	// TODO: Fade better?
+	if shouldIBeOn() {
+		f.Brightness = 255
+	} else {
+		f.Brightness = 0
+	}
+}
+
+func (f *FadeTree) startBrightnessTicker() {
+	f.setBrightness()
+	ticker := time.NewTicker(time.Second)
+	for {
+		<-ticker.C
+		f.setBrightness()
+	}
+}
+
+func (f *FadeTree) runWatcher() {
+	go f.startDayTicker()
+	go f.startBrightnessTicker()
 
 	for {
-		today := getToday()
-		color_palette := colors.GetDaysColors(today)
-		if shouldIBeOn() {
-			displayPattern(f.OpcClient, f.Jars, color_palette)
-		} else {
-			turnOffAllJars(f.OpcClient, f.Jars)
-		}
+		displayPattern(f.OpcClient, f.Jars, f.ColorPalette, f.Brightness)
+		fmt.Printf("Brightness: %d\n", f.Brightness)
 		time.Sleep(time.Duration(1) * time.Second)
 	}
 

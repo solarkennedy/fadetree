@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"time"
 
 	"github.com/kellydunn/go-opc"
 	"github.com/solarkennedy/fadetree/colors"
@@ -14,7 +14,8 @@ var (
 )
 
 type Jar struct {
-	Leds []colors.Color
+	Leds   []colors.Color
+	Candle bool
 }
 
 type FadeTree struct {
@@ -22,25 +23,23 @@ type FadeTree struct {
 	Jars           []Jar
 	OpcClient      *opc.Client
 	MotionDetected bool
+	Today          time.Time
+	Sunrise        time.Time
+	Sunset         time.Time
+	ColorPalette   []colors.Color
+	Brightness     uint8
 }
 
-func (f FadeTree) MakeJars() {
+func (f *FadeTree) MakeJars() {
 	f.Jars = make([]Jar, NumJars)
-	//for _, jar := range f.Jars {
-	//jar.Leds = make([]colors.Color, NumLedsPerJar)
-	//jar.Leds = append(jar.Leds, colors.Color{1, 1, 1})
-	//jar.Leds[0] = colors.Color{1, 1, 1}
-	//fmt.Println(f.Jars)
-	//}
-	fmt.Println(f.Jars)
-	fmt.Println(len(f.Jars))
+	for c := range f.Jars {
+		f.Jars[c].Leds = make([]colors.Color, NumLedsPerJar)
+	}
 }
 
 func main() {
 	var f FadeTree
 	f.MakeJars()
-	fmt.Println(f.Jars)
-	fmt.Println(len(f.Jars))
 	f.OpcClient = getOCClient()
 	go f.pollForMotion()
 	go runWebserver()
