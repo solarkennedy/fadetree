@@ -162,39 +162,38 @@ func GetDaysColors(day time.Time) []Color {
 	} else if TodayIsRange("August 1", 31, day) {
 		occasion = "August"
 		colors = []Color{
-
 			{2, 135, 188},
 			{9, 103, 167},
 			{32, 93, 146},
 			{54, 204, 109},
 			{39, 131, 66},
 		}
-		//	} else if TodayIsRange("September 1", 30, day) {
-		//		occasion = "September"
-		//		colors = []Color{
-		//			{78, 176, 129},
-		//			{4, 193, 186},
-		//			{8, 129, 85},
-		//			{93, 170, 139},
-		//			{03, 152, 211},
-		//		}
+	} else if TodayIsRange("September 1", 30, day) {
+		occasion = "September"
+		colors = []Color{
+			{78, 176, 129},
+			{4, 193, 186},
+			{8, 129, 85},
+			{93, 170, 139},
+			{03, 152, 211},
+		}
 	} else if TodayIsRange("October 1", 31, day) {
 		occasion = "October"
 		colors = []Color{
-			{47, 141, 0},
-			{20, 80, 0},
-			{01, 89, 5},
-			{8, 23, 3},
-			{7, 0, 0},
+			{141, 47, 0},
+			{80, 20, 0},
+			{89, 01, 5},
+			{23, 8, 3},
+			{0, 7, 0},
 		}
 	} else if TodayIsRange("November 1", 30, day) {
 		occasion = "November"
 		colors = []Color{
-			{55, 195, 31},
-			{20, 117, 0},
-			{72, 67, 12},
-			{18, 41, 0},
-			{30, 18, 16},
+			{195, 55, 31},
+			{117, 20, 0},
+			{67, 72, 12},
+			{41, 18, 0},
+			{18, 30, 16},
 		}
 	} else if TodayIsRange("December 1", 31, day) {
 		occasion = "December"
