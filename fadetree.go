@@ -24,8 +24,6 @@ type FadeTree struct {
 	OpcClient      *opc.Client
 	MotionDetected bool
 	Today          time.Time
-	Sunrise        time.Time
-	Sunset         time.Time
 	ColorPalette   []colors.Color
 	Brightness     uint8
 }
@@ -42,6 +40,6 @@ func main() {
 	f.MakeJars()
 	f.OpcClient = getOCClient()
 	go f.pollForMotion()
-	go runWebserver()
+	//go runWebserver()
 	f.runWatcher()
 }

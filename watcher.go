@@ -9,7 +9,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kelvins/sunrisesunset"
 	"github.com/solarkennedy/fadetree/colors"
 )
 
@@ -68,35 +67,7 @@ func getToday() time.Time {
 	}
 }
 
-func getUTCOffset(now time.Time) float64 {
-	offset, err := strconv.Atoi(now.Format("-0700"))
-	if err != nil {
-		panic(err)
-	}
-	return float64(offset / 100)
-}
-
-func getSunriseSunset(now time.Time) (time.Time, time.Time) {
-	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
-
-	p := sunrisesunset.Parameters{
-		Latitude:  37.774929,
-		Longitude: -122.419418,
-		UtcOffset: getUTCOffset(now),
-		Date:      today,
-	}
-	sunrise, sunset, err := p.GetSunriseSunset()
-	if err != nil {
-		panic(err)
-	}
-	sunrise_today := time.Date(now.Year(), now.Month(), now.Day(), sunrise.Hour(), sunrise.Minute(), sunrise.Second(), 0, now.Location())
-	sunset_today := time.Date(now.Year(), now.Month(), now.Day(), sunset.Hour(), sunset.Minute(), sunset.Second(), 0, now.Location())
-	fmt.Println(" Sunrise:", sunrise_today.Format("3:04PM"), " / Sunset:", sunset_today.Format("3:04PM"))
-	return sunrise_today, sunset_today
-}
-
 func (f *FadeTree) setDailySettings() {
-	f.Sunrise, f.Sunset = getSunriseSunset(time.Now())
 	f.Today = getToday()
 	f.ColorPalette = colors.GetDaysColors(f.Today)
 }
