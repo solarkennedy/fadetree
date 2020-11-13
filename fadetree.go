@@ -40,6 +40,5 @@ func main() {
 	f.MakeJars()
 	f.OpcClient = getOCClient()
 	go f.pollForMotion()
-	//go runWebserver()
 	f.runWatcher()
 }
