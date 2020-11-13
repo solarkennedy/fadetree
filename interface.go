@@ -3,68 +3,34 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 
-	"gobot.io/x/gobot"
-	"gobot.io/x/gobot/drivers/gpio"
-	"gobot.io/x/gobot/platforms/firmata"
-
-	"go.bug.st/serial.v1"
+	"github.com/brian-armstrong/gpio"
 )
 
-func guessSerialPort() string {
-	ports, err := serial.GetPortsList()
-	if err != nil {
-		log.Fatal(err)
-	}
-	if len(ports) == 0 {
-		return ""
-	}
-	for _, port := range ports {
-		fmt.Printf("Guessing serial port: %v\n", port)
-		return port
-	}
-	return ""
+func guessGPIOPin() int {
+	return 0
 }
 
 func (f *FadeTree) pollForMotion() {
-	serialPort := guessSerialPort()
-	if serialPort != "" {
-		f.setupGobotAndRun(serialPort)
+	gpioPin := guessGPIOPin()
+	if gpioPin != 0 {
+		f.pollForMotionOnGPIO(gpioPin)
 	} else {
 		log.Print("No serial port detected. Skipping fermata interface")
 	}
 }
 
-func (f *FadeTree) setupGobotAndRun(serialPort string) {
-	firmataAdaptor := firmata.NewAdaptor(serialPort)
-	sensor := gpio.NewPIRMotionDriver(firmataAdaptor, "2")
-	led := gpio.NewLedDriver(firmataAdaptor, "13")
+func (f *FadeTree) pollForMotionOnGPIO(gpioPin int) {
+	// https://openwrt.org/toh/tp-link/tl-wr703n#gpios
+	watcher := gpio.NewWatcher()
+	watcher.AddPin(14)
+	defer watcher.Close()
 
-	work := func() {
-		_ = sensor.On(gpio.MotionDetected, func(data interface{}) {
-			fmt.Println(gpio.MotionDetected)
-			f.MotionDetected = true
-			_ = led.On()
-		})
-		_ = sensor.On(gpio.MotionStopped, func(data interface{}) {
-			fmt.Println(gpio.MotionStopped)
-			f.MotionDetected = false
-			_ = led.Off()
-		})
-	}
-	robot := gobot.NewRobot("motionBot",
-		[]gobot.Connection{firmataAdaptor},
-		[]gobot.Device{sensor, led},
-		work,
-	)
+	go func() {
+		for {
+			pin, value := watcher.Watch()
+			fmt.Printf("read %d from gpio %d\n", value, pin)
+		}
+	}()
 
-	err := robot.Start()
-	if err != nil {
-		panic(err)
-	}
-	_ = firmataAdaptor.Finalize()
-	_ = led.Connection().Finalize()
-	_ = sensor.Connection().Finalize()
-	os.Exit(1)
 }
