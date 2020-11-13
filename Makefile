@@ -7,13 +7,16 @@ go:
 stop:
 	ssh root@fadetree -- /etc/init.d/fadetree stop
 
+start:
+	ssh root@fadetree -- /etc/init.d/fadetree start
+
 restart:
 	ssh root@fadetree -- /etc/init.d/fadetree restart
 
 deploy: fadetree.mips
 	scp fadetree.mips root@fadetree:/tmp/
 
-fadetree.mips: fadetree.go colors/colors.go
+fadetree.mips: *.go colors/colors.go
 	GOOS=linux GOARCH=mips GOMIPS=softfloat go build -o fadetree.mips .
 
 test:
