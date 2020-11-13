@@ -134,9 +134,22 @@ func (f *FadeTree) runWatcher() {
 	go f.startBrightnessTicker()
 
 	for {
-		displayPattern(f.OpcClient, f.Jars, f.ColorPalette, f.Brightness)
+		r := randomJar(f.Jars)
+		if shouldSetColorOnRandomJar() {
+			displayPatternOnJar(f.OpcClient, r, f.ColorPalette, f.Brightness)
+			Sync(f.OpcClient, f.Jars)
+		}
+		//displayPattern(f.OpcClient, f.Jars, f.ColorPalette, f.Brightness)
 		fmt.Printf("Brightness: %d\n", f.Brightness)
-		time.Sleep(time.Duration(5) * time.Second)
+		time.Sleep(time.Duration(1000 * time.Millisecond))
 	}
 
+}
+
+func randomJar(jars []Jar) Jar {
+	return jars[rand.Intn(len(jars))]
+}
+
+func shouldSetColorOnRandomJar() bool {
+	return true
 }

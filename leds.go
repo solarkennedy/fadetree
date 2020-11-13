@@ -10,23 +10,31 @@ import (
 )
 
 func setRandomColors(jars []Jar, brightness uint8) {
-	for j, jar := range jars {
-		for l := range jar.Leds {
-			jars[j].Leds[l].R = random(0, int(brightness))
-			jars[j].Leds[l].G = random(0, int(brightness))
-			jars[j].Leds[l].B = random(0, int(brightness))
-		}
+	for _, jar := range jars {
+		setRandomColorsOnJar(jar, brightness)
+	}
+}
+
+func setRandomColorsOnJar(jar Jar, brightness uint8) {
+	for l := range jar.Leds {
+		jar.Leds[l].R = random(0, int(brightness))
+		jar.Leds[l].G = random(0, int(brightness))
+		jar.Leds[l].B = random(0, int(brightness))
 	}
 }
 
 func setColorsFromPalette(jars []Jar, color_palette []colors.Color, brightness uint8) {
-	for j, jar := range jars {
-		for l := range jar.Leds {
-			c := color_palette[rand.Intn(len(color_palette))]
-			jars[j].Leds[l].R = c.R * (brightness / 255)
-			jars[j].Leds[l].G = c.G * (brightness / 255)
-			jars[j].Leds[l].B = c.B * (brightness / 255)
-		}
+	for _, jar := range jars {
+		setColorsOnJar(jar, color_palette, brightness)
+	}
+}
+
+func setColorsOnJar(jar Jar, color_palette []colors.Color, brightness uint8) {
+	c := color_palette[rand.Intn(len(color_palette))]
+	for l := range jar.Leds {
+		jar.Leds[l].R = c.R * (brightness / 255)
+		jar.Leds[l].G = c.G * (brightness / 255)
+		jar.Leds[l].B = c.B * (brightness / 255)
 	}
 }
 
@@ -37,6 +45,14 @@ func displayPattern(oc *opc.Client, jars []Jar, color_palette []colors.Color, br
 		setColorsFromPalette(jars, color_palette, brightness)
 	}
 	Sync(oc, jars)
+}
+
+func displayPatternOnJar(oc *opc.Client, jar Jar, color_palette []colors.Color, brightness uint8) {
+	if len(color_palette) == 0 {
+		setRandomColorsOnJar(jar, brightness)
+	} else {
+		setColorsOnJar(jar, color_palette, brightness)
+	}
 }
 
 // func (j Jar) TurnOff(oc *opc.Client) {
