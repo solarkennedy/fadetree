@@ -1,80 +1,25 @@
-# github.com/creack/goselect v0.1.0
-github.com/creack/goselect
-# github.com/davecgh/go-spew v1.1.1
+# github.com/brian-armstrong/gpio v0.0.0-20181227042754-72b0058bbbcb
+github.com/brian-armstrong/gpio
+# github.com/davecgh/go-spew v1.1.0
 github.com/davecgh/go-spew/spew
-# github.com/go-ble/ble v0.0.0-20190521171521-147700f13610
-github.com/go-ble/ble
-github.com/go-ble/ble/darwin
-github.com/go-ble/ble/linux
-github.com/go-ble/ble/linux/adv
-github.com/go-ble/ble/linux/att
-github.com/go-ble/ble/linux/gatt
-github.com/go-ble/ble/linux/hci
-github.com/go-ble/ble/linux/hci/cmd
-github.com/go-ble/ble/linux/hci/evt
-github.com/go-ble/ble/linux/hci/socket
-# github.com/gobuffalo/envy v1.9.0
-github.com/gobuffalo/envy
-# github.com/gobuffalo/packd v1.0.0
-github.com/gobuffalo/packd
-github.com/gobuffalo/packd/internal/takeon/github.com/markbates/errx
-# github.com/gobuffalo/packr v1.30.1
-github.com/gobuffalo/packr
 # github.com/gobuffalo/uuid v2.0.5+incompatible
 github.com/gobuffalo/uuid
 # github.com/gofrs/uuid v3.2.0+incompatible
 github.com/gofrs/uuid
-# github.com/gookit/color v1.2.2
+# github.com/gookit/color v1.3.2
 github.com/gookit/color
-# github.com/gorilla/websocket v1.4.0
-github.com/gorilla/websocket
 # github.com/hashicorp/errwrap v1.0.0
 github.com/hashicorp/errwrap
 # github.com/hashicorp/go-multierror v1.0.0
 github.com/hashicorp/go-multierror
-# github.com/joho/godotenv v1.3.0
-github.com/joho/godotenv
 # github.com/kellydunn/go-opc v0.1.0
 github.com/kellydunn/go-opc
-# github.com/kelvins/sunrisesunset v0.0.0-20170601204625-14f1915ad4b4
-github.com/kelvins/sunrisesunset
-# github.com/mattn/go-colorable v0.1.4
-github.com/mattn/go-colorable
-# github.com/mattn/go-isatty v0.0.9
-github.com/mattn/go-isatty
-# github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
-github.com/mgutz/ansi
-# github.com/mgutz/logxi v0.0.0-20161027140823-aebf8a7d67ab
-github.com/mgutz/logxi/v1
-# github.com/pkg/errors v0.8.1
-github.com/pkg/errors
 # github.com/pmezard/go-difflib v1.0.0
 github.com/pmezard/go-difflib/difflib
-# github.com/raff/goble v0.0.0-20190909174656-72afc67d6a99
-github.com/raff/goble/xpc
-# github.com/rogpeppe/go-internal v1.6.2
-github.com/rogpeppe/go-internal/modfile
-github.com/rogpeppe/go-internal/module
-github.com/rogpeppe/go-internal/semver
-# github.com/sigurn/crc8 v0.0.0-20160107002456-e55481d6f45c
-github.com/sigurn/crc8
-# github.com/sigurn/utils v0.0.0-20190728110027-e1fefb11a144
-github.com/sigurn/utils
-# github.com/stretchr/testify v1.5.1
+# github.com/stretchr/testify v1.6.1
 github.com/stretchr/testify/assert
-# go.bug.st/serial.v1 v0.0.0-20180827123349-5f7892a7bb45
-go.bug.st/serial.v1
-go.bug.st/serial.v1/unixutils
 # gobot.io/x/gobot v1.14.0
 gobot.io/x/gobot
 gobot.io/x/gobot/drivers/gpio
-gobot.io/x/gobot/drivers/i2c
-gobot.io/x/gobot/platforms/ble
-gobot.io/x/gobot/platforms/firmata
-gobot.io/x/gobot/platforms/firmata/client
-# golang.org/x/sys v0.0.0-20201009025420-dfb3f7c4e634
-golang.org/x/sys/internal/unsafeheader
-golang.org/x/sys/unix
-golang.org/x/sys/windows
-# gopkg.in/yaml.v2 v2.2.2
-gopkg.in/yaml.v2
+# gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c
+gopkg.in/yaml.v3
