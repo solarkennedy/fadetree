@@ -1,6 +1,9 @@
 package main
 
 import (
+	"fmt"
+	"os"
+	"os/signal"
 	"time"
 
 	"github.com/kellydunn/go-opc"
@@ -40,5 +43,17 @@ func main() {
 	f.MakeJars()
 	f.OpcClient = getOCClient()
 	go f.pollForMotion()
+	go f.setupExitHandler()
 	f.runWatcher()
+}
+
+func (f *FadeTree) setupExitHandler() {
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+	go func() {
+		for sig := range c {
+			fmt.Printf("Got %s. Shutting down", sig)
+			os.Exit(0)
+		}
+	}()
 }
