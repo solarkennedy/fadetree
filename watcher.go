@@ -84,11 +84,6 @@ func (f *FadeTree) startDayTicker() {
 
 func (f *FadeTree) setBrightness() {
 	// TODO: Fade better?
-	if shouldIBeOn() {
-		f.Brightness = 255
-	} else {
-		f.Brightness = 0
-	}
 }
 
 func (f *FadeTree) startBrightnessTicker() {
@@ -107,11 +102,11 @@ func (f *FadeTree) runWatcher() {
 	for {
 		r := randomJar(f.Jars)
 		if shouldSetColorOnRandomJar() {
-			displayPatternOnJar(f.OpcClient, r, f.ColorPalette, f.Brightness)
+			displayPatternOnJar(f.OpcClient, r, f.ColorPalette, f.Wakeness)
 			Sync(f.OpcClient, f.Jars)
 		}
 		//displayPattern(f.OpcClient, f.Jars, f.ColorPalette, f.Brightness)
-		fmt.Printf("Brightness: %d\n", f.Brightness)
+		fmt.Printf("Brightness: %d\n", f.Wakeness)
 		time.Sleep(time.Duration(1000 * time.Millisecond))
 	}
 

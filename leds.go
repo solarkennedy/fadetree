@@ -32,9 +32,9 @@ func setColorsFromPalette(jars []Jar, color_palette []colors.Color, brightness u
 func setColorsOnJar(jar Jar, color_palette []colors.Color, brightness uint8) {
 	c := color_palette[rand.Intn(len(color_palette))]
 	for l := range jar.Leds {
-		jar.Leds[l].R = c.R * (brightness / 255)
-		jar.Leds[l].G = c.G * (brightness / 255)
-		jar.Leds[l].B = c.B * (brightness / 255)
+		jar.Leds[l].R = uint8(int(c.R) * int(brightness) / 255)
+		jar.Leds[l].G = uint8(int(c.G) * int(brightness) / 255)
+		jar.Leds[l].B = uint8(int(c.B) * int(brightness) / 255)
 	}
 }
 

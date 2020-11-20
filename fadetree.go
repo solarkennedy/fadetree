@@ -24,7 +24,8 @@ type FadeTree struct {
 	MotionDetected  bool
 	Today           time.Time
 	ColorPalette    []colors.Color
-	Brightness      uint8
+	Wakeness        uint8
+	WakenessRate    int
 }
 
 func (f *FadeTree) MakeJars() {
