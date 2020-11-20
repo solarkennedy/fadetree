@@ -62,7 +62,6 @@ func displayPatternOnJar(oc *opc.Client, jar Jar, color_palette []colors.Color, 
 // 		led.G = 0
 // 		led.R = 0
 // 	}
-// 	j.Candle = false
 // }
 
 // func turnOffAllJars(oc *opc.Client, jars []Jar) {
@@ -87,7 +86,6 @@ func Sync(oc *opc.Client, jars []Jar) {
 	if err != nil {
 		log.Println("couldn't send opc message", err)
 	}
-	syncCandles(jars)
 	printStatus(jars)
 }
 
@@ -96,24 +94,8 @@ func printStatus(jars []Jar) {
 		for _, led := range j.Leds {
 			colors.PrintColorBlock(led)
 		}
-		if j.Candle {
-			fmt.Print("🕯")
-		} else {
-			fmt.Print("🥛")
-		}
 		fmt.Print("\t\t")
 	}
-}
-
-func syncCandles(jars []Jar) {
-	// for _, j := range jars {
-	// 	if j.Candle {
-	// 		// TODO: brightness factor? PWM?
-	// 	} else {
-	// 		// 0 > digital out pin map somehow
-	// 	}
-
-	// }
 }
 
 func getOCClient() *opc.Client {

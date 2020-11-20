@@ -16,8 +16,7 @@ var (
 )
 
 type Jar struct {
-	Leds   []colors.Color
-	Candle bool
+	Leds []colors.Color
 }
 
 type FadeTree struct {
