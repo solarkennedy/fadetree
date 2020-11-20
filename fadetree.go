@@ -5,11 +5,10 @@ import (
 
 	"github.com/kellydunn/go-opc"
 	"github.com/solarkennedy/fadetree/colors"
-	"gobot.io/x/gobot/drivers/gpio"
 )
 
 var (
-	NumJars       = 10
+	NumJars       = 3
 	NumLedsPerJar = 5
 )
 
@@ -19,13 +18,13 @@ type Jar struct {
 }
 
 type FadeTree struct {
-	MotionSensor   *gpio.PIRMotionDriver
-	Jars           []Jar
-	OpcClient      *opc.Client
-	MotionDetected bool
-	Today          time.Time
-	ColorPalette   []colors.Color
-	Brightness     uint8
+	MotionGPIOValue uint
+	Jars            []Jar
+	OpcClient       *opc.Client
+	MotionDetected  bool
+	Today           time.Time
+	ColorPalette    []colors.Color
+	Brightness      uint8
 }
 
 func (f *FadeTree) MakeJars() {

@@ -7,5 +7,4 @@ require (
 	github.com/gookit/color v1.3.2
 	github.com/kellydunn/go-opc v0.1.0
 	github.com/stretchr/testify v1.6.1
-	gobot.io/x/gobot v1.14.0
 )

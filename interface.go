@@ -3,12 +3,23 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
+	"strconv"
+	"time"
 
 	"github.com/brian-armstrong/gpio"
 )
 
 func guessGPIOPin() int {
-	return 0
+	env := os.Getenv("FADETREE_MOTION_GPIO")
+	if env == "" {
+		return 0
+	}
+	pin, err := strconv.Atoi(env)
+	if err != nil {
+		panic(err)
+	}
+	return pin
 }
 
 func (f *FadeTree) pollForMotion() {
@@ -16,20 +27,29 @@ func (f *FadeTree) pollForMotion() {
 	if gpioPin != 0 {
 		f.pollForMotionOnGPIO(gpioPin)
 	} else {
-		log.Print("No serial port detected. Skipping fermata interface")
+		log.Print("No GPIO port detected. Skipping motion detection")
 	}
 }
 
 func (f *FadeTree) pollForMotionOnGPIO(gpioPin int) {
 	// https://openwrt.org/toh/tp-link/tl-wr703n#gpios
-	watcher := gpio.NewWatcher()
-	watcher.AddPin(14)
-	defer watcher.Close()
+	p := gpio.NewInput(uint(gpioPin))
 
 	go func() {
 		for {
-			pin, value := watcher.Watch()
-			fmt.Printf("read %d from gpio %d\n", value, pin)
+			value, err := p.Read()
+			if err != nil {
+				fmt.Printf("Got error reading gpio pin %d: %s", gpioPin, err)
+			}
+			if f.MotionGPIOValue != value {
+				f.MotionGPIOValue = value
+				if value == 1 {
+					fmt.Print("Motion Detected!")
+				} else {
+					fmt.Print("Motion stopped")
+				}
+			}
+			time.Sleep(1 * time.Second)
 		}
 	}()
 
