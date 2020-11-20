@@ -55,21 +55,17 @@ func displayPatternOnJar(oc *opc.Client, jar Jar, color_palette []colors.Color, 
 	}
 }
 
-// func (j Jar) TurnOff(oc *opc.Client) {
-// 	for _, led := range j.Leds {
-// 		// TODO set to zero
-// 		led.B = 0
-// 		led.G = 0
-// 		led.R = 0
-// 	}
-// }
-
-// func turnOffAllJars(oc *opc.Client, jars []Jar) {
-// 	for _, j := range jars {
-// 		j.TurnOff(oc)
-// 	}
-// 	Sync(oc, jars)
-// }
+func (f *FadeTree) turnOffAllJars() {
+	oc := f.OpcClient
+	for i := range f.Jars {
+		for l := range f.Jars[i].Leds {
+			f.Jars[i].Leds[l].R = 0
+			f.Jars[i].Leds[l].G = 0
+			f.Jars[i].Leds[l].B = 0
+		}
+	}
+	Sync(oc, f.Jars)
+}
 
 func Sync(oc *opc.Client, jars []Jar) {
 	m := opc.NewMessage(0)

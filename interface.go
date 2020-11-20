@@ -28,6 +28,7 @@ func (f *FadeTree) pollForMotion() {
 		f.pollForMotionOnGPIO(gpioPin)
 	} else {
 		log.Print("No GPIO port detected. Skipping motion detection")
+		f.Wakeness = 255
 	}
 }
 

@@ -52,6 +52,7 @@ func (f *FadeTree) setupExitHandler() {
 	go func() {
 		for sig := range c {
 			fmt.Printf("Got %s. Shutting down", sig)
+			f.turnOffAllJars()
 			os.Exit(0)
 		}
 	}()
