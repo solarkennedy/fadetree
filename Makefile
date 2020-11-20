@@ -1,21 +1,24 @@
 go:
-	go build .
+	go build -mod vendor .
 	bash -c 'FADECANDYCAL_DATE=`date  "+%B %d"` ./fadetree'
 
 stop:
-	ssh root@fadetree -- /etc/init.d/fadetree stop
+	ssh fadetree -- /etc/init.d/fadetree stop
 
 start:
-	ssh root@fadetree -- /etc/init.d/fadetree start
+	ssh fadetree -- /etc/init.d/fadetree start
 
 restart:
-	ssh root@fadetree -- /etc/init.d/fadetree restart
+	ssh fadetree -- /etc/init.d/fadetree restart
 
 deploy: fadetree.mips
-	scp fadetree.mips root@fadetree:/tmp/
+	scp fadetree.mips fadetree:/tmp/
+
+watch: deploy
+	ssh -t fadetree -- /tmp/fadetree.mips
 
 fadetree.mips: *.go colors/colors.go
-	GOOS=linux GOARCH=mips GOMIPS=softfloat go build -o fadetree.mips .
+	GOOS=linux GOARCH=mips GOMIPS=softfloat go build -mod vendor -o fadetree.mips .
 
 test:
 	go test -v .
