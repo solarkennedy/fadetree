@@ -11,8 +11,8 @@ import (
 )
 
 var (
-	NumJars       = 3
-	NumLedsPerJar = 5
+	NumJars       = 8
+	NumLedsPerJar = 1
 )
 
 type Jar struct {

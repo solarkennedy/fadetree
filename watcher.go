@@ -107,7 +107,7 @@ func (f *FadeTree) runWatcher() {
 		}
 		//displayPattern(f.OpcClient, f.Jars, f.ColorPalette, f.Brightness)
 		fmt.Printf("Brightness: %d\n", f.Wakeness)
-		time.Sleep(time.Duration(1000 * time.Millisecond))
+		time.Sleep(time.Duration(5000 * time.Millisecond))
 	}
 
 }

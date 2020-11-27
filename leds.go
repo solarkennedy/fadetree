@@ -69,15 +69,16 @@ func (f *FadeTree) turnOffAllJars() {
 
 func Sync(oc *opc.Client, jars []Jar) {
 	m := opc.NewMessage(0)
-	counter := 0
-	for jarCounter, j := range jars {
-		for ledCounter, led := range j.Leds {
-			counter = jarCounter * ledCounter
-			m.SetPixelColor(counter, led.R, led.G, led.B)
+	LEDCursor := 0
+	for _, j := range jars {
+		for _, led := range j.Leds {
+			m.SetPixelColor(LEDCursor, led.G, led.R, led.B)
+			//m.SetPixelColor(counter, led.R, led.G, led.B)
+			LEDCursor = LEDCursor + 1
 		}
 	}
 	fmt.Println()
-	m.SetLength(uint16(counter * 3))
+	m.SetLength(uint16(LEDCursor * 3))
 	err := oc.Send(m)
 	if err != nil {
 		log.Println("couldn't send opc message", err)
@@ -90,7 +91,7 @@ func printStatus(jars []Jar) {
 		for _, led := range j.Leds {
 			colors.PrintColorBlock(led)
 		}
-		fmt.Print("\t\t")
+		fmt.Print("\t")
 	}
 }
 

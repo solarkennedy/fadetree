@@ -12,7 +12,9 @@ restart:
 	ssh fadetree -- /etc/init.d/fadetree restart
 
 deploy: fadetree.mips
-	scp fadetree.mips fadetree:/tmp/
+#	scp fadetree.mips fadetree:/tmp/
+	scp fadetree.mips archive:/var/www/
+	make restart
 
 watch: deploy
 	ssh -t fadetree -- /tmp/fadetree.mips
