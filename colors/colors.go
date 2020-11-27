@@ -2,6 +2,7 @@ package colors
 
 import (
 	"fmt"
+	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -27,188 +28,243 @@ func PrintColorBlock(c Color) {
 }
 
 func GetDaysColors(day time.Time) []Color {
-
-	var colors []Color
+	var colors []string
 	occasion := ""
 
 	if day.IsZero() {
-		return colors
+		return []Color{}
 	}
 
 	if TodayIs("January 1", day) {
 		occasion = "New Years Day"
-		colors = []Color{{212, 175, 55}, {0, 0, 0}}
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
 	} else if TodayIs("January 18", day) {
 		occasion = "Woman's March"
-		colors = []Color{{255, 79, 199}, {0, 0, 0}}
+		colors = []string{
+			"#ff4fc7",
+			"#000000",
+		}
 	} else if TodayIs("January 20", day) {
 		occasion = "MLK Day"
-		colors = []Color{{239, 52, 35}, {255, 209, 2}, {46, 151, 67}, {}}
+		colors = []string{
+			"#ef3423",
+			"#ffd102",
+			"#2e9743",
+			"#000000",
+		}
 	} else if TodayIs("January 25", day) {
 		occasion = "Chinese New Year"
-		colors = []Color{
-			{0, 0, 0},
-			{255, 0, 0},
-			{190, 24, 0},
-			{255, 212, 37},
-			{239, 196, 22},
+		colors = []string{
+			"#000000",
+			"#ff0000",
+			"#be1800",
+			"#ffd425",
+			"#efc416",
 		}
 	} else if TodayIs("January 29", day) {
 		occasion = "NEN Awards"
-		colors = []Color{{151, 193, 209}, {123, 170, 124}, {250, 187, 24}}
+		colors = []string{
+			"#97c1d1",
+			"#7baa7c",
+			"#fabb18",
+		}
 	} else if TodayIsRange("January 1", 31, day) {
 		occasion = "January"
-		colors = []Color{
-			{13, 10, 94},
-			{125, 123, 144},
-			{60, 141, 135},
-			{109, 65, 139},
-			{124, 67, 105},
-			{255, 255, 255},
+		colors = []string{
+			"#0d0a5e",
+			"#7d7b90",
+			"#3c8d87",
+			"#6d418b",
+			"#7c4369",
+			"#ffffff",
 		}
 	} else if TodayIsRange("February 1", 2, day) {
 		occasion = "Red/Gold - 49ers at Superbowl"
-		colors = []Color{{187, 52, 49}, {186, 150, 106}}
+		colors = []string{
+			"#bb3431",
+			"#ba966a",
+		}
 	} else if TodayIs("February 4", day) {
 		occasion = "Emperor Norton's 200th Birthday"
-		colors = []Color{{212, 175, 55}, {0, 0, 0}}
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
 	} else if TodayIsRange("February 19", 5, day) {
 		occasion = "Black History Month"
-		colors = []Color{{239, 52, 35}, {255, 209, 2}, {46, 151, 67}, {}}
+		colors = []string{
+			"#ef3423",
+			"#ffd102",
+			"#2e9743",
+			"#000000",
+		}
 	} else if TodayIsRange("February 1", 28, day) {
 		occasion = "February"
-		colors = []Color{
-			{236, 156, 192},
-			{240, 177, 212},
-			{246, 207, 245},
-			{227, 219, 255},
-			{210, 213, 253},
+		colors = []string{
+			"#ec9cc0",
+			"#f0b1d4",
+			"#f6cff5",
+			"#e3dbff",
+			"#d2d5fd",
 		}
 	} else if TodayIs("March 8", day) {
 		occasion = "International Women's Day"
-		colors = []Color{{87, 74, 114}, {0, 0, 0}}
+		colors = []string{
+			"#574a72",
+			"#000000",
+		}
 	} else if TodayIs("March 17", day) {
 		occasion = "Saint Patrick's Day"
-		colors = []Color{{0, 153, 89}, {0, 0, 0}}
+		colors = []string{
+			"#009959",
+			"#000000",
+		}
 	} else if TodayIsRange("March 19", 2, day) {
 		occasion = "Nowruz/Persian New Year"
-		colors = []Color{
-			{255, 0, 0},
-			{0, 255, 0},
-			{255, 255, 255},
-			{0, 0, 0},
+		colors = []string{
+			"#ff0000",
+			"#00ff00",
+			"#ffffff",
+			"#000000",
 		}
 	} else if TodayIs("March 21", day) {
 		occasion = "American Red Cross Day"
-		colors = []Color{{255, 0, 0}, {0, 0, 0}}
+		colors = []string{
+			"#ff0000",
+			"#000000",
+		}
 	} else if TodayIs("March 24", day) {
 		occasion = "World TB Day"
-		colors = []Color{{153, 0, 0}, {0, 0, 0}}
+		colors = []string{
+			"#990000",
+			"#000000",
+		}
 	} else if TodayIs("March 25", day) {
 		occasion = "National Cerebral Palsy Awareness Month"
-		colors = []Color{{31, 158, 31}, {0, 0, 0}}
+		colors = []string{
+			"#1f9e1f",
+			"#000000",
+		}
 	} else if TodayIs("March 26", day) {
 		occasion = "Colon Cancer Awareness Month"
-		colors = []Color{{0, 128, 255}, {0, 0, 0}, {255, 255, 255}}
+		colors = []string{
+			"#0080ff",
+			"#000000",
+			"#ffffff",
+		}
 	} else if TodayIsRange("March 1", 31, day) {
 		occasion = "March"
-		colors = []Color{
-			{111, 139, 199},
-			{84, 180, 149},
-			{74, 146, 90},
-			{69, 141, 53},
-			{63, 75, 133},
-			{0, 0, 0},
+		colors = []string{
+			"#6f8bc7",
+			"#54b495",
+			"#4a925a",
+			"#458d35",
+			"#3f4b85",
+			"#000000",
 		}
 	} else if TodayIsRange("April 1", 30, day) {
 		occasion = "April"
-		colors = []Color{
-			{184, 149, 214},
-			{197, 181, 229},
-			{206, 216, 255},
-			{232, 255, 210},
-			{248, 249, 171},
+		colors = []string{
+			"#b895d6",
+			"#c5b5e5",
+			"#ced8ff",
+			"#e8ffd2",
+			"#f8f9ab",
 		}
 	} else if TodayIsRange("May 1", 31, day) {
 		occasion = "May"
-		colors = []Color{
-			{27, 236, 123},
-			{02, 246, 139},
-			{49, 255, 150},
-			{55, 204, 222},
-			{34, 203, 249},
+		colors = []string{
+			"#1bec7b",
+			"#02f68b",
+			"#31ff96",
+			"#37ccde",
+			"#22cbf9",
 		}
 	} else if TodayIsRange("June 1", 30, day) {
 		occasion = "June"
-		colors = []Color{
-			{255, 239, 63},
-			{112, 224, 255},
-			{227, 160, 242},
-			{255, 154, 219},
-			{204, 255, 0},
+		colors = []string{
+			"#ffef3f",
+			"#70e0ff",
+			"#e3a0f2",
+			"#ff9adb",
+			"#ccff00",
 		}
 	} else if TodayIsRange("July 1", 31, day) {
 		occasion = "July"
-		colors = []Color{
-			{44, 201, 80},
-			{38, 78, 90},
-			{2, 154, 201},
-			{5, 186, 125},
-			{51, 124, 84},
+		colors = []string{
+			"#2cc950",
+			"#264e5a",
+			"#029ac9",
+			"#05ba7d",
+			"#337c54",
 		}
 	} else if TodayIs("August 8", day) {
 		occasion = "Pantone 448c"
-		colors = []Color{{74, 65, 42}, {}}
+		colors = []string{
+			"#4a412a",
+			"#000000",
+		}
 	} else if TodayIsRange("August 1", 31, day) {
 		occasion = "August"
-		colors = []Color{
-			{2, 135, 188},
-			{9, 103, 167},
-			{32, 93, 146},
-			{54, 204, 109},
-			{39, 131, 66},
+		colors = []string{
+			"#0287bc",
+			"#0967a7",
+			"#205d92",
+			"#36cc6d",
+			"#278342",
 		}
 	} else if TodayIsRange("September 1", 30, day) {
 		occasion = "September"
-		colors = []Color{
-			{78, 176, 129},
-			{4, 193, 186},
-			{8, 129, 85},
-			{93, 170, 139},
-			{03, 152, 211},
+		colors = []string{
+			"#4eb081",
+			"#04c1ba",
+			"#088155",
+			"#5daa8b",
+			"#0398d3",
 		}
 	} else if TodayIsRange("October 1", 31, day) {
 		occasion = "October"
-		colors = []Color{
-			{141, 47, 0},
-			{80, 20, 0},
-			{89, 01, 5},
-			{23, 8, 3},
-			{0, 7, 0},
+		colors = []string{
+			"#8d2f00",
+			"#501400",
+			"#590105",
+			"#170803",
+			"#000700",
 		}
 	} else if TodayIsRange("November 1", 30, day) {
 		occasion = "November"
-		colors = []Color{
-			{195, 100, 0},
-			{117, 20, 0},
-			{255, 165, 0},
+		colors = []string{
+			"#c36400",
+			"#751400",
+			"#ffa500",
 		}
 	} else if TodayIsRange("December 1", 31, day) {
 		occasion = "December"
-		colors = []Color{
-			{87, 22, 20},
-			{29, 0, 0},
-			{8, 99, 24},
-			{9, 46, 5},
-			{5, 59, 46},
+		colors = []string{
+			"#571614",
+			"#1d0000",
+			"#086318",
+			"#092e05",
+			"#053b2e",
 		}
 	} else {
 		occasion = "(No Occasion)"
-		colors = []Color{}
+		colors = []string{}
 	}
+	c := ConvertPalette(colors)
+	PrintColors(c, occasion, day)
+	return c
+}
 
-	PrintColors(colors, occasion, day)
-	return colors
+func ConvertPalette(input []string) []Color {
+	output := []Color{}
+	for _, c := range input {
+		output = append(output, ParseHexColor(c))
+	}
+	return output
 }
 
 func TodayIs(input string, today time.Time) bool {
@@ -245,7 +301,28 @@ func MonthToMonth(input string) time.Month {
 			return fake_date.Month()
 		}
 		fake_date = fake_date.AddDate(0, 1, 0)
-
 	}
 	return time.Month(1)
+}
+
+func ParseHexColor(s string) (c Color) {
+	if s[0] != '#' {
+		log.Fatalf("Color hex must start with #: %s", s)
+	}
+	hexToByte := func(b byte) byte {
+		switch {
+		case b >= '0' && b <= '9':
+			return b - '0'
+		case b >= 'a' && b <= 'f':
+			return b - 'a' + 10
+		case b >= 'A' && b <= 'F':
+			return b - 'A' + 10
+		}
+		log.Fatalf("Can't interpret byte %b", b)
+		return 0
+	}
+	c.R = hexToByte(s[1])<<4 + hexToByte(s[2])
+	c.G = hexToByte(s[3])<<4 + hexToByte(s[4])
+	c.B = hexToByte(s[5])<<4 + hexToByte(s[6])
+	return
 }

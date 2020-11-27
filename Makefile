@@ -23,8 +23,7 @@ fadetree.mips: *.go colors/colors.go
 	GOOS=linux GOARCH=mips GOMIPS=softfloat go build -mod vendor -o fadetree.mips .
 
 test:
-	go test -v .
-	cd colors && go test -v
+	go test -v `go list ./... | grep -v /vendor/`
 
 fmt:
 	go fmt ...
