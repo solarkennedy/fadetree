@@ -38,7 +38,7 @@ func GetDaysColors(day time.Time) []Color {
 	if TodayIs("January 1", day) {
 		occasion = "New Years Day"
 		colors = []string{
-			"#d4af37",
+			"#ffd700",
 			"#000000",
 		}
 	} else if TodayIs("January 18", day) {
@@ -241,14 +241,41 @@ func GetDaysColors(day time.Time) []Color {
 			"#751400",
 			"#ffa500",
 		}
+	} else if TodayIs("December 1", day) {
+		occasion = "World Aids Day"
+		colors = []string{
+			"#eb0000",
+			"#000000",
+		}
+	} else if TodayIsRange("December 20", 6, day) {
+		occasion = "Christmas"
+		colors = []string{
+			"#ffffff",
+			"#eb0000",
+			"#02d92a",
+			"#cbc967",
+		}
+	} else if TodayIs("December 26", day) {
+		occasion = "Kwanza"
+		colors = []string{
+			"#ef3423",
+			"#ffd102",
+			"#2e9743",
+			"#000000",
+		}
+	} else if TodayIs("December 29", day) {
+		occasion = "Last night of Hannukah"
+		colors = []string{
+			"#005EB8",
+			"#ffffff",
+		}
 	} else if TodayIsRange("December 1", 31, day) {
 		occasion = "December"
 		colors = []string{
 			"#571614",
-			"#1d0000",
-			"#086318",
+			"#eb0000",
+			"#02d92a",
 			"#092e05",
-			"#053b2e",
 		}
 	} else {
 		occasion = "(No Occasion)"
