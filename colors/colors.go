@@ -247,6 +247,12 @@ func GetDaysColors(day time.Time) []Color {
 			"#eb0000",
 			"#000000",
 		}
+	} else if TodayIs("December 10", day) {
+		occasion = "First night of Hannukah"
+		colors = []string{
+			"#005EB8",
+			"#ffffff",
+		}
 	} else if TodayIsRange("December 20", 6, day) {
 		occasion = "Christmas"
 		colors = []string{
