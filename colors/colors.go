@@ -27,12 +27,12 @@ func PrintColorBlock(c Color) {
 	cprint.Print("█")
 }
 
-func GetDaysColors(day time.Time) []Color {
+func GetDaysColors(day time.Time) ([]Color, string) {
 	var colors []string
 	occasion := ""
 
 	if day.IsZero() {
-		return []Color{}
+		return []Color{}, ""
 	}
 
 	if TodayIs("January 1", day) {
@@ -289,7 +289,7 @@ func GetDaysColors(day time.Time) []Color {
 	}
 	c := ConvertPalette(colors)
 	PrintColors(c, occasion, day)
-	return c
+	return c, occasion
 }
 
 func ConvertPalette(input []string) []Color {

@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/solarkennedy/fadetree/colors"
 )
 
@@ -69,7 +70,15 @@ func getToday() time.Time {
 
 func (f *FadeTree) setDailySettings() {
 	f.Today = getToday()
-	f.ColorPalette = colors.GetDaysColors(f.Today)
+	current := f.ColorPalette
+	new, occasion := colors.GetDaysColors(f.Today)
+	if !cmp.Equal(current, new) {
+		sendPushNotification(
+			fmt.Sprintf("Picking new colors for %s", f.Today),
+			fmt.Sprintf("It's %s!", occasion),
+		)
+		f.ColorPalette = new
+	}
 }
 
 func (f *FadeTree) startDayTicker() {

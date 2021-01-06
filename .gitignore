@@ -2,3 +2,4 @@ fadetree
 fadetree.mips
 *.swp
 .vscode
+secrets.sh
