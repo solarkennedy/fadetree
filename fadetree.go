@@ -39,6 +39,7 @@ func (f *FadeTree) MakeJars() {
 
 func main() {
 	var f FadeTree
+	sendPushNotification("Fadetree Booted", "Fadetree Booted")
 	f.MakeJars()
 	f.OpcClient = getOCClient()
 	go f.pollForMotion()

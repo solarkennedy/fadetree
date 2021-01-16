@@ -68,14 +68,24 @@ func getToday() time.Time {
 	}
 }
 
+func imagesInMarkDown(colors []colors.Color) string {
+	output := ""
+	for _, c := range colors {
+		colorHex := fmt.Sprintf("%x%x%x", c.R, c.G, c.B)
+		output = fmt.Sprintf("%s![](https://raster.shields.io/badge/-%%20-%s?style=flat-square)", output, colorHex)
+
+	}
+	return output
+}
+
 func (f *FadeTree) setDailySettings() {
 	f.Today = getToday()
 	current := f.ColorPalette
 	new, occasion := colors.GetDaysColors(f.Today)
 	if !cmp.Equal(current, new) {
 		sendPushNotification(
-			fmt.Sprintf("Picking new colors for %s", f.Today),
-			fmt.Sprintf("It's %s!", occasion),
+			fmt.Sprintf("New Colors for %s!", occasion),
+			fmt.Sprintf("Picking new colors for %s: %s", f.Today, imagesInMarkDown(new)),
 		)
 		f.ColorPalette = new
 	}

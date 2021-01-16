@@ -17,10 +17,21 @@ func sendPushNotification(title string, message string) {
 		return
 	}
 
+	j := fmt.Sprintf(`
+	{
+		"title": "%s",
+		"message": "%s",
+		"extras": {
+		  "client::display": {
+			"contentType": "text/markdown"
+		  }
+		}
+	  }`, title, message)
+
 	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	resp, err := http.Post(gotifyURL,
-		"application/x-www-form-urlencoded",
-		strings.NewReader(fmt.Sprintf("title=%s&message=%s", title, message)),
+		"application/json",
+		strings.NewReader(j),
 	)
 	if err != nil {
 		fmt.Println(err)
