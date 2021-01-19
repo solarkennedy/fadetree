@@ -42,12 +42,6 @@ func GetDaysColors(day time.Time) ([]Color, string) {
 			"#000000",
 		}
 	} else if TodayIs("January 18", day) {
-		occasion = "Woman's March"
-		colors = []string{
-			"#ff4fc7",
-			"#000000",
-		}
-	} else if TodayIs("January 20", day) {
 		occasion = "MLK Day"
 		colors = []string{
 			"#ef3423",
@@ -55,21 +49,50 @@ func GetDaysColors(day time.Time) ([]Color, string) {
 			"#2e9743",
 			"#000000",
 		}
-	} else if TodayIs("January 25", day) {
-		occasion = "Chinese New Year"
+	} else if TodayIs("January 19", day) {
+		occasion = "Honoring Frontline Workers"
 		colors = []string{
+			"#ffd102",
 			"#000000",
-			"#ff0000",
-			"#be1800",
-			"#ffd425",
-			"#efc416",
 		}
-	} else if TodayIs("January 29", day) {
-		occasion = "NEN Awards"
+	} else if TodayIs("January 20", day) {
+		occasion = " Inauguration of the 46th President of the US"
 		colors = []string{
-			"#97c1d1",
-			"#7baa7c",
-			"#fabb18",
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
+		}
+	} else if TodayIs("January 21", day) {
+		occasion = "Honoring 1st Responders"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
+		}
+	} else if TodayIs("January 19", day) {
+		occasion = "Honoring our Hospitality industry"
+		colors = []string{
+			"#6d418b",
+			"#000000",
+		}
+	} else if TodayIs("January 26", day) {
+		occasion = "Honoring Frontline Workers"
+		colors = []string{
+			"#ffd102",
+			"#000000",
+		}
+	} else if TodayIs("January 27", day) {
+		occasion = "Honoring Frontline Workers"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("January 28", day) {
+		occasion = "Honoring 1st Responders"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
 		}
 	} else if TodayIsRange("January 1", 31, day) {
 		occasion = "January"
