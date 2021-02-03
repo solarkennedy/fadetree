@@ -105,24 +105,128 @@ func GetDaysColors(day time.Time) ([]Color, string) {
 			"#ffffff",
 		}
 	} else if TodayIsRange("February 1", 2, day) {
-		occasion = "Red/Gold - 49ers at Superbowl"
+		occasion = "Honoring our Hospitality industry"
 		colors = []string{
-			"#bb3431",
-			"#ba966a",
+			"#6d418b",
+			"#000000",
+			"#ffffff",
 		}
-	} else if TodayIs("February 4", day) {
-		occasion = "Emperor Norton's 200th Birthday"
+	} else if TodayIs("February 2", day) {
+		occasion = "Honoring Frontline workers"
 		colors = []string{
 			"#d4af37",
 			"#000000",
 		}
-	} else if TodayIsRange("February 19", 5, day) {
+	} else if TodayIs("February 3", day) {
+		occasion = "Honoring Healthcare Workers"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("February 4", day) {
+		occasion = "World Cancer Day"
+		colors = []string{
+			"#ff7f4d",
+			"#ffffff",
+		}
+	} else if TodayIs("February 5", day) {
 		occasion = "Black History Month"
 		colors = []string{
 			"#ef3423",
 			"#ffd102",
 			"#2e9743",
 			"#000000",
+		}
+	} else if TodayIs("February 8", day) {
+		occasion = "Honoring our Hospitality industry"
+		colors = []string{
+			"#6d418b",
+			"#000000",
+			"#ffffff",
+		}
+	} else if TodayIs("February 9", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
+	} else if TodayIs("February 10", day) {
+		occasion = "Honoring Healthcare Workers"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("February 11", day) {
+		occasion = "Honoring 1st Responders"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
+		}
+	} else if TodayIs("February 12", day) {
+		occasion = "Lunar New Year - Year of the Ox"
+		colors = []string{
+			"#d4af37",
+			"#FE0200",
+		}
+	} else if TodayIs("February 14", day) {
+		occasion = "Valentine's Day"
+		colors = []string{
+			"#5E081E",
+			"#E24767",
+			"#E4CDD3",
+		}
+	} else if TodayIs("February 15", day) {
+		occasion = "President's Day"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
+		}
+	} else if TodayIs("February 16", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
+	} else if TodayIs("February 17", day) {
+		occasion = "Honoring Healthcare Workers"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("February 18", day) {
+		occasion = "Honoring 1st Responders"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
+		}
+	} else if TodayIs("February 22", day) {
+		occasion = "Honoring our Hospitality industry"
+		colors = []string{
+			"#6d418b",
+			"#000000",
+			"#ffffff",
+		}
+	} else if TodayIs("February 23", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
+	} else if TodayIs("February 24", day) {
+		occasion = "Honoring Healthcare Workers"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("February 25", day) {
+		occasion = "Honoring 1st Responders"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
 		}
 	} else if TodayIsRange("February 1", 28, day) {
 		occasion = "February"
