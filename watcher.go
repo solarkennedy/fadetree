@@ -122,9 +122,11 @@ func (f *FadeTree) runWatcher() {
 		for i := range f.Jars {
 			displayPatternOnJar(f.OpcClient, f.Jars[i], f.ColorPalette, f.Wakeness)
 		}
-		Sync(f.OpcClient, f.Jars)
-
-		fmt.Printf("Brightness: %d\n", f.Wakeness)
+		err := Sync(f.OpcClient, f.Jars)
+		if err != nil {
+			log.Printf("Error syncing to fc. Resetting: %s", err)
+			f.OpcClient = getOCClient()
+		}
 		time.Sleep(time.Duration(2000 * time.Millisecond))
 	}
 }

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"math/rand"
+	"os"
 
 	"github.com/kellydunn/go-opc"
 	"github.com/solarkennedy/fadetree/colors"
@@ -38,13 +39,13 @@ func setColorsOnJar(jar Jar, color_palette []colors.Color, brightness uint8) {
 	}
 }
 
-func displayPattern(oc *opc.Client, jars []Jar, color_palette []colors.Color, brightness uint8) {
+func displayPattern(oc *opc.Client, jars []Jar, color_palette []colors.Color, brightness uint8) error {
 	if len(color_palette) == 0 {
 		setRandomColors(jars, brightness)
 	} else {
 		setColorsFromPalette(jars, color_palette, brightness)
 	}
-	Sync(oc, jars)
+	return Sync(oc, jars)
 }
 
 func displayPatternOnJar(oc *opc.Client, jar Jar, color_palette []colors.Color, brightness uint8) {
@@ -64,10 +65,10 @@ func (f *FadeTree) turnOffAllJars() {
 			f.Jars[i].Leds[l].B = 0
 		}
 	}
-	Sync(oc, f.Jars)
+	_ = Sync(oc, f.Jars)
 }
 
-func Sync(oc *opc.Client, jars []Jar) {
+func Sync(oc *opc.Client, jars []Jar) error {
 	m := opc.NewMessage(0)
 	LEDCursor := 0
 	for _, j := range jars {
@@ -77,21 +78,32 @@ func Sync(oc *opc.Client, jars []Jar) {
 			LEDCursor = LEDCursor + 1
 		}
 	}
-	fmt.Println()
 	m.SetLength(uint16(LEDCursor * 3))
 	err := oc.Send(m)
 	if err != nil {
-		log.Println("couldn't send opc message", err)
+		return err
 	}
 	printStatus(jars)
+	return nil
 }
 
 func printStatus(jars []Jar) {
-	for _, j := range jars {
-		for _, led := range j.Leds {
-			colors.PrintColorBlock(led)
+	if isATTY() {
+		for _, j := range jars {
+			for _, led := range j.Leds {
+				colors.PrintColorBlock(led)
+			}
+			fmt.Print("\t")
 		}
-		fmt.Print("\t")
+	}
+}
+
+func isATTY() bool {
+	stat, _ := os.Stdin.Stat()
+	if (stat.Mode() & os.ModeCharDevice) == 0 {
+		return true
+	} else {
+		return false
 	}
 }
 
