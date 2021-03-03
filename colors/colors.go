@@ -237,10 +237,49 @@ func GetDaysColors(day time.Time) ([]Color, string) {
 			"#e3dbff",
 			"#d2d5fd",
 		}
+	} else if TodayIs("March 5", day) {
+		occasion = "Flag of Italy in Honor of Lawrence Ferlingetti"
+		colors = []string{
+			"#00ff00",
+			"#ff0000",
+			"#ffffff",
+		}
 	} else if TodayIs("March 8", day) {
 		occasion = "International Women's Day"
 		colors = []string{
 			"#574a72",
+			"#000000",
+		}
+	} else if TodayIs("March 9", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
+	} else if TodayIs("March 10", day) {
+		occasion = "Colon Cancer Awareness Month"
+		colors = []string{
+			"#002D72",
+			"#000000",
+		}
+	} else if TodayIs("March 11", day) {
+		occasion = "Honoring 1st Responders"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
+		}
+	} else if TodayIs("March 15", day) {
+		occasion = "Honoring our Hospitality industry"
+		colors = []string{
+			"#6d418b",
+			"#000000",
+			"#ffffff",
+		}
+	} else if TodayIs("March 16", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
 			"#000000",
 		}
 	} else if TodayIs("March 17", day) {
@@ -248,6 +287,13 @@ func GetDaysColors(day time.Time) ([]Color, string) {
 		colors = []string{
 			"#009959",
 			"#000000",
+		}
+	} else if TodayIs("March 18", day) {
+		occasion = "Honoring 1st Responders"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
 		}
 	} else if TodayIsRange("March 19", 2, day) {
 		occasion = "Nowruz/Persian New Year"
@@ -263,6 +309,19 @@ func GetDaysColors(day time.Time) ([]Color, string) {
 			"#ff0000",
 			"#000000",
 		}
+	} else if TodayIs("March 22", day) {
+		occasion = "Honoring our Hospitality industry"
+		colors = []string{
+			"#6d418b",
+			"#000000",
+			"#ffffff",
+		}
+	} else if TodayIs("March 23", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
 	} else if TodayIs("March 24", day) {
 		occasion = "World TB Day"
 		colors = []string{
@@ -270,17 +329,36 @@ func GetDaysColors(day time.Time) ([]Color, string) {
 			"#000000",
 		}
 	} else if TodayIs("March 25", day) {
-		occasion = "National Cerebral Palsy Awareness Month"
-		colors = []string{
-			"#1f9e1f",
-			"#000000",
-		}
-	} else if TodayIs("March 26", day) {
-		occasion = "Colon Cancer Awareness Month"
+		occasion = "200th Anniversary of Greek Independence"
 		colors = []string{
 			"#0080ff",
+			"#ffffff",
+		}
+	} else if TodayIs("March 26", day) {
+		occasion = "Flag of Italy in Honor of Lawrence Ferlingetti"
+		colors = []string{
+			"#00ff00",
+			"#ff0000",
+			"#ffffff",
+		}
+	} else if TodayIs("March 29", day) {
+		occasion = "Honoring our Hospitality industry"
+		colors = []string{
+			"#6d418b",
 			"#000000",
 			"#ffffff",
+		}
+	} else if TodayIs("March 30", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
+	} else if TodayIs("March 31", day) {
+		occasion = "Honoring Healthcare Workers"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
 		}
 	} else if TodayIsRange("March 1", 31, day) {
 		occasion = "March"
