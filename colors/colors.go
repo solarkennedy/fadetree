@@ -355,9 +355,9 @@ func GetDaysColors(day time.Time) ([]Color, string) {
 			"#000000",
 		}
 	} else if TodayIs("March 31", day) {
-		occasion = "Honoring Healthcare Workers"
+		occasion = "National Kidney Month"
 		colors = []string{
-			"#0d0a7e",
+			"#c36400",
 			"#000000",
 		}
 	} else if TodayIsRange("March 1", 31, day) {
@@ -369,6 +369,118 @@ func GetDaysColors(day time.Time) ([]Color, string) {
 			"#458d35",
 			"#3f4b85",
 			"#000000",
+		}
+	} else if TodayIs("April 1", day) {
+		occasion = "Child Abuse Awareness Month"
+		colors = []string{
+			"#3f4b85",
+			"#000000",
+		}
+	} else if TodayIs("April 5", day) {
+		occasion = "Honoring our Hospitality industry"
+		colors = []string{
+			"#6d418b",
+			"#000000",
+			"#ffffff",
+		}
+	} else if TodayIs("April 6", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
+	} else if TodayIs("April 7", day) {
+		occasion = "Honoring Healthcare Workers"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("April 8", day) {
+		occasion = "Honoring 1st Responders"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
+		}
+	} else if TodayIs("April 12", day) {
+		occasion = "Honoring our Hospitality"
+		colors = []string{
+			"#6d418b",
+			"#000000",
+			"#ffffff",
+		}
+	} else if TodayIs("April 13", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
+	} else if TodayIs("April 14", day) {
+		occasion = "Israeli Independance Day"
+		colors = []string{
+			"#005EB8",
+			"#ffffff",
+		}
+	} else if TodayIs("April 15", day) {
+		occasion = "Honoring 1st Responders"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
+		}
+	} else if TodayIs("April 19", day) {
+		occasion = "Honoring our Hospitality"
+		colors = []string{
+			"#6d418b",
+			"#000000",
+			"#ffffff",
+		}
+	} else if TodayIs("April 20", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
+	} else if TodayIs("April 21", day) {
+		occasion = "Honoring Healthcare workers"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("April 22", day) {
+		occasion = "Earth Day"
+		colors = []string{
+			"#2cc950",
+			"#264e5a",
+			"#029ac9",
+			"#05ba7d",
+			"#337c54",
+		}
+	} else if TodayIs("April 26", day) {
+		occasion = "Honoring our Hospitality"
+		colors = []string{
+			"#6d418b",
+			"#000000",
+			"#ffffff",
+		}
+	} else if TodayIs("April 27", day) {
+		occasion = "Netherlands National Day"
+		colors = []string{
+			"#ff7f4d",
+			"#000000",
+		}
+	} else if TodayIs("April 28", day) {
+		occasion = "Child Abuse Awareness"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("April 29", day) {
+		occasion = "Honoring 1st Responders"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
 		}
 	} else if TodayIsRange("April 1", 30, day) {
 		occasion = "April"
