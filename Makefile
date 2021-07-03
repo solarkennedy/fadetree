@@ -12,7 +12,7 @@ restart:
 	ssh fadetree -- /etc/init.d/fadetree restart
 
 deploy: fadetree.mips
-	rsync -aPv fadetree.mips archive:/var/www/
+	rsync -aPv fadetree.mips root@archive:/var/www/html/
 	make restart
 
 watch: deploy

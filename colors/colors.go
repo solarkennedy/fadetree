@@ -491,6 +491,153 @@ func GetDaysColors(day time.Time) ([]Color, string) {
 			"#e8ffd2",
 			"#f8f9ab",
 		}
+	} else if TodayIs("May 1", day) {
+		occasion = "Asian Pacific American"
+		colors = []string{
+			"#ff0000",
+			"#05ba7d",
+			"#0000ff",
+			"#b895d6",
+		}
+	} else if TodayIs("May 3", day) {
+		occasion = "17th Annual SF"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("May 4", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
+	} else if TodayIs("May 5", day) {
+		occasion = "Local and National"
+		colors = []string{
+			"#ff0000",
+			"#000000",
+		}
+	} else if TodayIs("May 6", day) {
+		occasion = "- National Mental"
+		colors = []string{
+			"#2cc950",
+		}
+	} else if TodayIs("May 7", day) {
+		occasion = "Honoring our Hospitality"
+		colors = []string{
+			"#6d418b",
+			"#000000",
+			"#ffffff",
+		}
+	} else if TodayIs("May 9", day) {
+		occasion = "Mother's Day "
+		colors = []string{
+			"#d4af37",
+			"#2cc950",
+		}
+	} else if TodayIs("May 10", day) {
+		occasion = "- National Children's"
+		colors = []string{
+			"#000000",
+			"#2cc950",
+		}
+	} else if TodayIs("May 11", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
+	} else if TodayIs("May 12", day) {
+		occasion = "Honoring Healthcare workers"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("May 13", day) {
+		occasion = "Honoring 1st Responders"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
+		}
+	} else if TodayIs("May 15", day) {
+		occasion = "Peace Officers Memorial"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("May 17", day) {
+		occasion = "Honoring our Hospitality"
+		colors = []string{
+			"#6d418b",
+			"#000000",
+			"#ffffff",
+		}
+	} else if TodayIs("May 18", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
+	} else if TodayIs("May 19", day) {
+		occasion = "Honoring Healthcare workers"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("May 20", day) {
+		occasion = "National EMS Week"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff"}
+	} else if TodayIs("May 21", day) {
+		occasion = "USF 162nd Commencment"
+		colors = []string{
+			"#d4af37",
+			"#2cc950",
+		}
+	} else if TodayIs("May 24", day) {
+		occasion = "Eritrea Independence Day"
+		colors = []string{
+			"#0000ff",
+			"#ff0000",
+			"#d4af37",
+			"#2cc950",
+		}
+	} else if TodayIs("May 25", day) {
+		occasion = "Honoring Frontline workers"
+		colors = []string{
+			"#d4af37",
+			"#000000",
+		}
+	} else if TodayIs("May 26", day) {
+		occasion = "Honoring Healthcare workers"
+		colors = []string{
+			"#0d0a7e",
+			"#000000",
+		}
+	} else if TodayIs("May 27", day) {
+		occasion = "Honoring 1st Responders"
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
+		}
+	} else if TodayIs("May 28", day) {
+		occasion = "Honoring our Hospitality"
+		colors = []string{
+			"#6d418b",
+			"#000000",
+			"#ffffff",
+		}
+	} else if TodayIs("May 31", day) {
+		occasion = "Memorial Day "
+		colors = []string{
+			"#ff0000",
+			"#ffffff",
+			"#0000ff",
+		}
 	} else if TodayIsRange("May 1", 31, day) {
 		occasion = "May"
 		colors = []string{
